@@ -1,0 +1,8 @@
+# Merge under spec.template.spec.containers[0] when database.needed.
+# M3 PROVISION_DATABASE owns this edit (files_writable: k8s/app.yaml).
+- name: QUARKUS_DATASOURCE_JDBC_URL
+  value: jdbc:postgresql://iso-v10-final-retry-postgres:5432/iso-v10-final-retry
+- name: QUARKUS_DATASOURCE_USERNAME
+  valueFrom: {secretKeyRef: {name: iso-v10-final-retry-postgres, key: POSTGRESQL_USER}}
+- name: QUARKUS_DATASOURCE_PASSWORD
+  valueFrom: {secretKeyRef: {name: iso-v10-final-retry-postgres, key: POSTGRESQL_PASSWORD}}
